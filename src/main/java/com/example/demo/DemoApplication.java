@@ -1,4 +1,4 @@
-package com.nagarro.sampleproject;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SampleProjectApplication {
-
+public class DemoApplication {
+	
 	@GetMapping("/")
 	public String home(){
 		return "Hello, This is Nagarro Sample Spring Boot Project!!";
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SampleProjectApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
 
 }
