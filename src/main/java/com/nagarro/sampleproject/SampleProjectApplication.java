@@ -11,7 +11,7 @@ public class SampleProjectApplication {
 
 	@GetMapping("/")
 	public String home(){
-		return "Hello, This is Nagarro Sample project!!";
+		return "Hello, This is Nagarro Sample Spring Boot Project!!";
 	}
 
 	public static void main(String[] args) {
