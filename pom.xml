@@ -21,14 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.fabric8/docker-maven-plugin -->
-		<dependency>
-			<groupId>com.spotify</groupId>
-			<artifactId>docker-maven-plugin</artifactId>
-			<version>0.4.11</version>
-		</dependency>
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -44,22 +36,27 @@
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.11</version>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
 				<configuration>
-					<imageName>demo-nagarro</imageName>
-					<dockerDirectory>${project.basedir}</dockerDirectory>
+					<username>gauravagrawalvbn</username>
+					<password>Kanha@123</password>
+					<repository>gauravagrawalvbn/${project.build.finalName}.jar</repository>
+					<tag>latest</tag>
 					<buildArgs>
-						<finalName>${project.build.finalName}.jar</finalName>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<id>tag-version</id>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<finalName>demo-nagarro</finalName>
