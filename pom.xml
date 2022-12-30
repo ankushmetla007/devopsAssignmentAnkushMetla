@@ -23,9 +23,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.fabric8/docker-maven-plugin -->
 		<dependency>
-			<groupId>io.fabric8</groupId>
+			<groupId>com.spotify</groupId>
 			<artifactId>docker-maven-plugin</artifactId>
-			<version>0.40.3</version>
+			<version>0.4.11</version>
 		</dependency>
 
 
@@ -41,6 +41,25 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.11</version>
+				<configuration>
+					<imageName>demo-nagarro</imageName>
+					<dockerDirectory>${project.basedir}</dockerDirectory>
+					<buildArgs>
+						<finalName>${project.build.finalName}.jar</finalName>
+					</buildArgs>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
 			</plugin>
 		</plugins>
 		<finalName>demo-nagarro</finalName>
